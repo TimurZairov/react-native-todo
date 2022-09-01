@@ -1,5 +1,6 @@
 import React from "react";
 import {Text, View, StyleSheet, Button} from "react-native";
+import {THEME} from '../theme/theme'
 
 
 export const TodoScreen = ({ todoOpen, backHandler }) => {
@@ -10,10 +11,10 @@ export const TodoScreen = ({ todoOpen, backHandler }) => {
             </View>
             <View style={styles.containerBtn}>
                 <View style={styles.btn}>
-                    <Button color='#b2b2b2' title='Назад' onPress={backHandler}/>
+                    <Button color={THEME.GREY_COLOR} title='Назад' onPress={backHandler}/>
                 </View>
                 <View style={styles.btn}>
-                    <Button color='red' title='Удалить' />
+                    <Button color={THEME.DANGER_COLOR} title='Удалить' />
                 </View>
 
             </View>
@@ -38,6 +39,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     btn: {
-        width: '45%'
+        width: '45%',
     }
 })

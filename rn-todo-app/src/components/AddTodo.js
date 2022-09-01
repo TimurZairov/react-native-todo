@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {View, Alert, StyleSheet, TextInput, Button} from 'react-native'
+import {THEME} from "../theme/theme";
 
 export const AddTodo = ({setTodos, todos}) => {
     const [title, setTitle] = useState('')
@@ -29,7 +30,7 @@ export const AddTodo = ({setTodos, todos}) => {
                 autoCorrect={false}
                 autoCapitalize= 'none'
             />
-            <Button  color='#67b3f6' title="Добавить" onPress={addTodo} />
+            <Button  color={THEME.MAIN_COLOR} title="Добавить" onPress={addTodo} />
         </View>
     )
 }
