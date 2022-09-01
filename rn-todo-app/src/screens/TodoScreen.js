@@ -1,14 +1,18 @@
 import React from "react";
 import {Text, View, StyleSheet, Button} from "react-native";
 import {THEME} from '../theme/theme'
+import {AppCard} from "../components/ui/AppCard";
 
 
 export const TodoScreen = ({ todoOpen, backHandler }) => {
     return (
         <>
-            <View style={styles.todoContainer}>
-                {todoOpen ? <Text>{todoOpen.title}</Text> : {}}
-            </View>
+            <AppCard style={styles.appCard}>
+                <View>
+                    {todoOpen ? <Text style={styles.text}>{todoOpen.title}</Text> : {}}
+                </View>
+                <Button title='Редактировать' />
+            </AppCard>
             <View style={styles.containerBtn}>
                 <View style={styles.btn}>
                     <Button color={THEME.GREY_COLOR} title='Назад' onPress={backHandler}/>
@@ -24,15 +28,10 @@ export const TodoScreen = ({ todoOpen, backHandler }) => {
 }
 
 const styles = StyleSheet.create({
-    todoContainer: {
-        width: '100%',
-        height: 90,
-        borderColor: '#b2b2b2',
-        borderWidth: 1,
-        borderRadius: 3,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 20
+    appCard: {
+        padding: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     containerBtn: {
         flexDirection: 'row',
@@ -40,5 +39,8 @@ const styles = StyleSheet.create({
     },
     btn: {
         width: '45%',
+    },
+    text: {
+        fontSize: 20
     }
 })
