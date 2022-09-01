@@ -1,37 +1,56 @@
-
-import { StatusBar } from 'expo-status-bar';
-import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {Navbar} from "./src/Navbar";
-import {AddTodo} from "./src/AddTodo";
+import {StatusBar} from 'expo-status-bar';
+import {FlatList, StyleSheet, View} from 'react-native';
+import {Navbar} from "./src/components/Navbar";
 import {useState} from "react";
-import {Todo} from "./src/Todo";
+import {MainScreen} from "./src/screens/MainScreen";
+import {TodoScreen} from "./src/screens/TodoScreen";
 
 export default function App() {
-    const [todos, setTodos] = useState([])
+    const [todoOpen, setTodoOpen] = useState(null)
+    const [todos, setTodos] = useState([
+        {
+            id: '123',
+            title: 'Купить варенье'
+        },
+        {
+            id: '321',
+            title: 'Схавать варенье'
+        }
+    ])
 
 
+    const openTodo = (id) => {
+        setTodoOpen(todos.find(todo => todo.id === id))
+    }
 
-  return (
-    <View >
-      <Navbar title='Todo App'/>
-        <View style={styles.container}>
-            <AddTodo setTodos={setTodos} todos={todos}/>
-            <FlatList
-                keyExtractor={item => item.id}
-                data={todos}
-                renderItem={({item}) => {
-                    return <Todo todo={item}/>
-                }} />
+    const removeTodo = (id) => {
+       setTodos( todos.filter(todo => {
+           return todo.id !== id
+       }))
+
+
+    }
+
+    const backHandler = () => {
+        setTodoOpen(null)
+    }
+
+    return (
+        <View>
+            <Navbar title='Todo App'/>
+            <View style={styles.container}>
+                {!todoOpen ? <MainScreen todos={todos} setTodos={setTodos} openTodo={openTodo} removeTodo={removeTodo}/> :
+                    <TodoScreen todoOpen={todoOpen} backHandler={backHandler}/>}
+
+            </View>
+            <StatusBar style="auto"/>
         </View>
-
-        <StatusBar style="auto" />
-    </View>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-      paddingHorizontal: 15,
-      paddingVertical: 15
-  }
+    container: {
+        paddingHorizontal: 15,
+        paddingVertical: 15
+    }
 });
