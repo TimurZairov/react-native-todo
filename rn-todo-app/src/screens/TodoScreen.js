@@ -1,24 +1,30 @@
-import React from "react";
-import {Text, View, StyleSheet, Button} from "react-native";
+import React, {useState} from "react";
+import {Text, View, StyleSheet, Button, Modal} from "react-native";
 import {THEME} from '../theme/theme'
 import {AppCard} from "../components/ui/AppCard";
+import {EditModal} from "../components/EditModal";
 
 
-export const TodoScreen = ({ todoOpen, backHandler }) => {
+
+
+export const TodoScreen = ({ todoOpen, backHandler, removeTodo }) => {
+    const [visible, setVisible] = useState(false)
+
     return (
         <>
+            <EditModal visible={visible} setVisible={setVisible}/>
             <AppCard style={styles.appCard}>
                 <View>
                     {todoOpen ? <Text style={styles.text}>{todoOpen.title}</Text> : {}}
                 </View>
-                <Button title='Редактировать' />
+                <Button title='Редактировать' onPress={() => setVisible(true)}/>
             </AppCard>
             <View style={styles.containerBtn}>
                 <View style={styles.btn}>
                     <Button color={THEME.GREY_COLOR} title='Назад' onPress={backHandler}/>
                 </View>
                 <View style={styles.btn}>
-                    <Button color={THEME.DANGER_COLOR} title='Удалить' />
+                    <Button color={THEME.DANGER_COLOR} title='Удалить' onPress={() => removeTodo(todoOpen.id, todoOpen.title)}/>
                 </View>
 
             </View>

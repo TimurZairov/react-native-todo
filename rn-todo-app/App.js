@@ -1,5 +1,5 @@
 import {StatusBar} from 'expo-status-bar';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, View, Alert} from 'react-native';
 import {Navbar} from "./src/components/Navbar";
 import {useState} from "react";
 import {MainScreen} from "./src/screens/MainScreen";
@@ -23,12 +23,27 @@ export default function App() {
         setTodoOpen(todos.find(todo => todo.id === id))
     }
 
-    const removeTodo = (id) => {
-       setTodos( todos.filter(todo => {
-           return todo.id !== id
-       }))
 
-
+    const removeTodo = (id, title) => {
+        Alert.alert(
+            "Удаление",
+            `Вы дествильено хотите удалить элемент "${title}"?`,
+            [
+                {
+                    text: "Cancel",
+                    style: "positive"
+                },
+                {
+                    text: "Удалить", onPress: () => {
+                        setTodos(todos.filter(todo => {
+                            return todo.id !== id
+                        }))
+                    },
+                    style: "negative"
+                }
+            ]
+        );
+        setTodoOpen(null)
     }
 
     const backHandler = () => {
@@ -39,8 +54,9 @@ export default function App() {
         <View>
             <Navbar title='Todo App'/>
             <View style={styles.container}>
-                {!todoOpen ? <MainScreen todos={todos} setTodos={setTodos} openTodo={openTodo} removeTodo={removeTodo}/> :
-                    <TodoScreen todoOpen={todoOpen} backHandler={backHandler}/>}
+                {!todoOpen ?
+                    <MainScreen todos={todos} setTodos={setTodos} openTodo={openTodo} removeTodo={removeTodo}/> :
+                    <TodoScreen todoOpen={todoOpen} backHandler={backHandler} removeTodo={removeTodo}/>}
 
             </View>
             <StatusBar style="auto"/>
