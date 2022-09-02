@@ -46,6 +46,15 @@ export default function App() {
         setTodoOpen(null)
     }
 
+    const editTodo = (id, title) => {
+        const todo = todos.filter(item => {
+            if(item.id === id){
+                return item.title = title
+            }
+        })
+       return todo
+    }
+
     const backHandler = () => {
         setTodoOpen(null)
     }
@@ -56,7 +65,7 @@ export default function App() {
             <View style={styles.container}>
                 {!todoOpen ?
                     <MainScreen todos={todos} setTodos={setTodos} openTodo={openTodo} removeTodo={removeTodo}/> :
-                    <TodoScreen todoOpen={todoOpen} backHandler={backHandler} removeTodo={removeTodo}/>}
+                    <TodoScreen todoOpen={todoOpen} backHandler={backHandler} removeTodo={removeTodo} editTodo={editTodo}/>}
 
             </View>
             <StatusBar style="auto"/>

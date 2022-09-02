@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Text, View, StyleSheet, Button, Modal} from "react-native";
+import {Text, View, StyleSheet, Button} from "react-native";
 import {THEME} from '../theme/theme'
 import {AppCard} from "../components/ui/AppCard";
 import {EditModal} from "../components/EditModal";
@@ -7,12 +7,11 @@ import {EditModal} from "../components/EditModal";
 
 
 
-export const TodoScreen = ({ todoOpen, backHandler, removeTodo }) => {
+export const TodoScreen = ({ todoOpen, backHandler, removeTodo, editTodo}) => {
     const [visible, setVisible] = useState(false)
-
     return (
         <>
-            <EditModal visible={visible} setVisible={setVisible}/>
+            <EditModal visible={visible} setVisible={setVisible} todoOpen={todoOpen} editTodo={editTodo}/>
             <AppCard style={styles.appCard}>
                 <View>
                     {todoOpen ? <Text style={styles.text}>{todoOpen.title}</Text> : {}}

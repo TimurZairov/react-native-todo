@@ -1,8 +1,18 @@
-import React from "react";
-import {Button, Modal, TextInput, View, StyleSheet} from "react-native";
+import React, {useState} from "react";
+import {Button, Modal, TextInput, View, StyleSheet, Alert} from "react-native";
 import {THEME} from '../theme/theme'
 
-export const EditModal = ({visible, setVisible}) => {
+export const EditModal = ({visible, setVisible, todoOpen, editTodo }) => {
+    const [ title, setTitle ] = useState(todoOpen.title)
+    const changeHandler = (id) => {
+        if(title.trim().length < 3){
+            Alert.alert('Ошибка', `Название задания сейчас ${title.length} символа, должно быть больше 3 символов`)
+        }else {
+            editTodo(id, title)
+            setVisible(false)
+        }
+    }
+
     return (
         <Modal
             visible={visible}
@@ -11,10 +21,10 @@ export const EditModal = ({visible, setVisible}) => {
             presentationStyle='pageSheet'
         >
             <View style={styles.wrapper}>
-                <TextInput style={styles.textInput}/>
+                <TextInput style={styles.textInput} value={title} onChangeText={setTitle}/>
                 <View style={styles.button}>
                     <Button color={THEME.DANGER_COLOR} title='Отменить' onPress={() => setVisible(false)}/>
-                    <Button title='Сохранить'/>
+                    <Button title='Сохранить' onPress={() => changeHandler(todoOpen.id)}/>
                 </View>
             </View>
         </Modal>
