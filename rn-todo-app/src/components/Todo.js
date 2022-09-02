@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 15,
-        color: '#1e1e1f'
+        color: '#1e1e1f',
+        fontFamily: 'osvald-bold',
     }
 })
