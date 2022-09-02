@@ -1,9 +1,18 @@
 import {StatusBar} from 'expo-status-bar';
-import {FlatList, StyleSheet, View, Alert} from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
+import * as Font from 'expo-font'
+
 import {Navbar} from "./src/components/Navbar";
 import {useState} from "react";
 import {MainScreen} from "./src/screens/MainScreen";
 import {TodoScreen} from "./src/screens/TodoScreen";
+
+async function loadApplication() {
+    await Font.loadAsync({
+        'osvald-bold': require('./assets/Oswald/static/Oswald-Bold.ttf'),
+        'osvald-regular': require('./assets/Oswald/static/Oswald-Regular.ttf')
+    })
+}
 
 export default function App() {
     const [todoOpen, setTodoOpen] = useState(null)
