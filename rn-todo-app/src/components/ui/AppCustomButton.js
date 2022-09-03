@@ -1,17 +1,19 @@
 import React from "react";
-import {TouchableOpacity, View, StyleSheet} from "react-native";
+import {TouchableOpacity, View, StyleSheet, Platform, TouchableNativeFeedback} from "react-native";
 import {AppRegularFont} from "./AppRegularFont";
 import {THEME} from "../../theme/theme";
 
 export const AppCustomButton = ({children, color=THEME.MAIN_COLOR, onPress, height= 38}) => {
+    const System = Platform.OS === 'android' ? TouchableNativeFeedback  : TouchableOpacity
+
     return (
-        <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
+        <System onPress={onPress} activeOpacity={0.7}>
             <View style={{...styles.btn, backgroundColor: color, height: height}}>
                 <AppRegularFont style={styles.text} >
                     {children}
                 </AppRegularFont>
             </View>
-        </TouchableOpacity>
+        </System>
     )
 }
 
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         borderRadius: 10,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center'
     },
     text: {

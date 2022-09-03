@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {View, Alert, StyleSheet, TextInput, Keyboard} from 'react-native'
-import {THEME} from "../theme/theme";
 import {AppCustomButton} from "./ui/AppCustomButton";
 import {Ionicons} from "@expo/vector-icons";
 

@@ -23,25 +23,22 @@ export const TodoScreen = ({ todoOpen, backHandler, removeTodo, editTodo}) => {
                 </View>
 
                 <AppCustomButton onPress={() => setVisible(true)}>
-                    <AntDesign name='edit' size={18}>
-                        Ред.
-                    </AntDesign>
+                    <AntDesign name='edit' size={18} />
                 </AppCustomButton>
                 {/*<Button title='Редактировать' onPress={() => setVisible(true)}/>*/}
             </AppCard>
             <View style={styles.containerBtn}>
+                <View style={styles.btn}>
                     <AppCustomButton onPress={backHandler}>
-                        <AntDesign name='back' size={18}>
-                            Назад
-                        </AntDesign>
+                        <AntDesign name='back' size={18} />
                     </AppCustomButton>
+                </View>
+
                     {/*<Button color={THEME.GREY_COLOR} title='Назад' onPress={backHandler}/>*/}
 
                 <View style={styles.btn}>
                     <AppCustomButton onPress={() => removeTodo(todoOpen.id, todoOpen.title)} color={THEME.DANGER_COLOR}>
-                        <AntDesign name='delete' size={18}>
-                            Удалить
-                        </AntDesign>
+                        <AntDesign name='delete' size={18} />
                     </AppCustomButton>
 
                     {/*<Button color={THEME.DANGER_COLOR} title='Удалить' onPress={() => removeTodo(todoOpen.id, todoOpen.title)}/>*/}
