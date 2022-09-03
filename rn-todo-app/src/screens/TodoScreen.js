@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, StyleSheet, Button} from "react-native";
+import { View, StyleSheet, Dimensions} from "react-native";
 import {THEME} from '../theme/theme'
 import {AntDesign} from '@expo/vector-icons'
 
@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     btn: {
-        width: '40%'
+        width: Dimensions.get('window').width / 3
+        //width: Dimension.get('window').width > 400 ? 150 : 100 можно использовать тернарные операторы в стиля учитывая размер экрана
     },
     text: {
         fontSize: 20
