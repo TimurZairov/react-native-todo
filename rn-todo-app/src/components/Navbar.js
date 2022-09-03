@@ -1,5 +1,5 @@
 import React from "react";
-import {Text, View, StyleSheet} from 'react-native'
+import {View, StyleSheet, Platform} from 'react-native'
 import {THEME} from "../theme/theme";
 import {AppBold} from "./ui/AppBold";
 
@@ -17,11 +17,28 @@ const styles = StyleSheet.create({
         height: 70,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        backgroundColor: THEME.MAIN_COLOR,
         paddingBottom: 10,
         borderBottomRightRadius: 10,
-        borderBottomLeftRadius: 10
+        borderBottomLeftRadius: 10,
+        ...Platform.select({
+            ios: {
+                borderBottomColor: THEME.MAIN_COLOR,
+                borderWidth: 1
+
+            },
+            android: {
+                backgroundColor: THEME.MAIN_COLOR
+            }
+        })
     },
+    // navbarAndroid: {
+    //     borderBottomColor: THEME.MAIN_COLOR,
+    //     borderWidth: 1
+    //
+    // },
+    // navbarIos: {
+    //     backgroundColor: THEME.MAIN_COLOR
+    // },
     text: {
         fontSize: 30,
         color: '#FFF',
