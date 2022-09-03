@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import {Button, Modal, TextInput, View, StyleSheet, Alert} from "react-native";
 import {THEME} from '../theme/theme'
+import {AppCustomButton} from "./ui/AppCustomButton";
+
+import {MaterialIcons} from "@expo/vector-icons";
 
 export const EditModal = ({visible, setVisible, todoOpen, editTodo }) => {
     const [ title, setTitle ] = useState(todoOpen.title)
@@ -23,8 +26,20 @@ export const EditModal = ({visible, setVisible, todoOpen, editTodo }) => {
             <View style={styles.wrapper}>
                 <TextInput style={styles.textInput} value={title} onChangeText={setTitle}/>
                 <View style={styles.button}>
-                    <Button color={THEME.DANGER_COLOR} title='Отменить' onPress={() => setVisible(false)}/>
-                    <Button title='Сохранить' onPress={() => changeHandler(todoOpen.id)}/>
+                    <AppCustomButton  onPress={() => setVisible(false)}>
+                        <MaterialIcons name='cancel' size={16}>
+                            Отмена
+                        </MaterialIcons>
+                    </AppCustomButton>
+
+                    <AppCustomButton color={THEME.DANGER_COLOR} onPress={() => changeHandler(todoOpen.id)}>
+                        <MaterialIcons name='save' size={16}>
+                            Сохранить
+                        </MaterialIcons>
+                    </AppCustomButton>
+
+                    {/*<Button color={THEME.DANGER_COLOR} title='Отменить' onPress={() => setVisible(false)}/>*/}
+                    {/*<Button title='Сохранить' onPress={() => changeHandler(todoOpen.id)}/>*/}
                 </View>
             </View>
         </Modal>

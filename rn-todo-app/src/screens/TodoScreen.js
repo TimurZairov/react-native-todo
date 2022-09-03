@@ -1,9 +1,13 @@
 import React, {useState} from "react";
-import {Text, View, StyleSheet, Button} from "react-native";
+import { View, StyleSheet, Button} from "react-native";
 import {THEME} from '../theme/theme'
+import {AntDesign} from '@expo/vector-icons'
+
 import {AppCard} from "../components/ui/AppCard";
 import {EditModal} from "../components/EditModal";
 import {AppRegularFont} from "../components/ui/AppRegularFont";
+import {AppCustomButton} from "../components/ui/AppCustomButton";
+
 
 
 
@@ -17,14 +21,30 @@ export const TodoScreen = ({ todoOpen, backHandler, removeTodo, editTodo}) => {
                 <View>
                     {todoOpen ? <AppRegularFont style={styles.text}>{todoOpen.title}</AppRegularFont> : {}}
                 </View>
-                <Button title='Редактировать' onPress={() => setVisible(true)}/>
+
+                <AppCustomButton onPress={() => setVisible(true)}>
+                    <AntDesign name='edit' size={18}>
+                        Ред.
+                    </AntDesign>
+                </AppCustomButton>
+                {/*<Button title='Редактировать' onPress={() => setVisible(true)}/>*/}
             </AppCard>
             <View style={styles.containerBtn}>
+                    <AppCustomButton onPress={backHandler}>
+                        <AntDesign name='back' size={18}>
+                            Назад
+                        </AntDesign>
+                    </AppCustomButton>
+                    {/*<Button color={THEME.GREY_COLOR} title='Назад' onPress={backHandler}/>*/}
+
                 <View style={styles.btn}>
-                    <Button color={THEME.GREY_COLOR} title='Назад' onPress={backHandler}/>
-                </View>
-                <View style={styles.btn}>
-                    <Button color={THEME.DANGER_COLOR} title='Удалить' onPress={() => removeTodo(todoOpen.id, todoOpen.title)}/>
+                    <AppCustomButton onPress={() => removeTodo(todoOpen.id, todoOpen.title)} color={THEME.DANGER_COLOR}>
+                        <AntDesign name='delete' size={18}>
+                            Удалить
+                        </AntDesign>
+                    </AppCustomButton>
+
+                    {/*<Button color={THEME.DANGER_COLOR} title='Удалить' onPress={() => removeTodo(todoOpen.id, todoOpen.title)}/>*/}
                 </View>
 
             </View>
@@ -44,7 +64,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     btn: {
-        width: '45%',
+        width: '40%'
     },
     text: {
         fontSize: 20

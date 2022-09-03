@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {View, Alert, StyleSheet, TextInput, Button} from 'react-native'
 import {THEME} from "../theme/theme";
+import {AppCustomButton} from "./ui/AppCustomButton";
+import {Ionicons} from "@expo/vector-icons";
 
 export const AddTodo = ({setTodos, todos}) => {
     const [title, setTitle] = useState('')
@@ -30,7 +32,14 @@ export const AddTodo = ({setTodos, todos}) => {
                 autoCorrect={false}
                 autoCapitalize= 'none'
             />
-            <Button  color={THEME.MAIN_COLOR} title="Добавить" onPress={addTodo} />
+
+            <AppCustomButton onPress={addTodo}>
+                <Ionicons name='add' size={15}>
+                    Добавить
+                </Ionicons>
+            </AppCustomButton>
+
+            {/*<Button  color={THEME.MAIN_COLOR} title="Добавить" onPress={addTodo} />*/}
         </View>
     )
 }
@@ -41,7 +50,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     input: {
-        width: '75%',
+        width: '60%',
         borderStyle: 'solid',
         borderWidth: 1,
         borderColor: '#eaeaea',
