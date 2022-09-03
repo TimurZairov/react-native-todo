@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {View, Alert, StyleSheet, TextInput, Button} from 'react-native'
+import {View, Alert, StyleSheet, TextInput, Keyboard} from 'react-native'
 import {THEME} from "../theme/theme";
 import {AppCustomButton} from "./ui/AppCustomButton";
 import {Ionicons} from "@expo/vector-icons";
@@ -16,6 +16,7 @@ export const AddTodo = ({setTodos, todos}) => {
         if(title.trim()){
             setTodos([newTodo, ...todos])
             setTitle('')
+            Keyboard.dismiss()
         }else {
             Alert.alert('Введите текст')
         }

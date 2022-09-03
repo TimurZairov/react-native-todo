@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Modal, TextInput, View, StyleSheet, Alert} from "react-native";
+import { Modal, TextInput, View, StyleSheet, Alert} from "react-native";
 import {THEME} from '../theme/theme'
 import {AppCustomButton} from "./ui/AppCustomButton";
 
