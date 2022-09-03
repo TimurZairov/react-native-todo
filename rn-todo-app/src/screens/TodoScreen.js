@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, Button} from "react-native";
 import {THEME} from '../theme/theme'
 import {AppCard} from "../components/ui/AppCard";
 import {EditModal} from "../components/EditModal";
+import {AppRegularFont} from "../components/ui/AppRegularFont";
 
 
 
@@ -14,7 +15,7 @@ export const TodoScreen = ({ todoOpen, backHandler, removeTodo, editTodo}) => {
             <EditModal visible={visible} setVisible={setVisible} todoOpen={todoOpen} editTodo={editTodo}/>
             <AppCard style={styles.appCard}>
                 <View>
-                    {todoOpen ? <Text style={styles.text}>{todoOpen.title}</Text> : {}}
+                    {todoOpen ? <AppRegularFont style={styles.text}>{todoOpen.title}</AppRegularFont> : {}}
                 </View>
                 <Button title='Редактировать' onPress={() => setVisible(true)}/>
             </AppCard>

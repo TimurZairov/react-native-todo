@@ -1,12 +1,14 @@
 import React from "react";
 import {Text, View, StyleSheet, TouchableOpacity} from "react-native";
 
+import {AppBold} from "./ui/AppBold";
+
 export const Todo =( { todo, openTodo, removeTodo } ) => {
 
     return (
         <TouchableOpacity  onPress={() => openTodo(todo.id)} onLongPress={() => {removeTodo(todo.id, todo.title)}}>
             <View style={styles.todo} >
-                <Text style={styles.text} > Задача: {todo.title}</Text>
+                <AppBold style={styles.text} > Задача: {todo.title}</AppBold>
             </View>
         </TouchableOpacity>
     )

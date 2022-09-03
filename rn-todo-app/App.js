@@ -69,7 +69,7 @@ export default function App() {
     useEffect(() => {
         async function prepare() {
             try {
-                // Pre-load fonts, make any API calls you need to do here
+                // load fonts, make any API calls you need to do here
                 await Font.loadAsync({
                     'osvald-bold': require('./assets/Oswald/static/Oswald-Bold.ttf'),
                     'osvald-regular': require('./assets/Oswald/static/Oswald-Regular.ttf')

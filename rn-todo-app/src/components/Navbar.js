@@ -1,12 +1,13 @@
 import React from "react";
 import {Text, View, StyleSheet} from 'react-native'
 import {THEME} from "../theme/theme";
+import {AppBold} from "./ui/AppBold";
 
 
 export const Navbar = (props) => {
     return (
         <View style={styles.navbar}>
-            <Text style={styles.text} >{props.title}</Text>
+            <AppBold style={styles.text} >{props.title}</AppBold>
         </View>
     )
 }
@@ -22,8 +23,8 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 10
     },
     text: {
-        color: '#f3f0ef',
-        fontSize: 20,
-        fontWeight: 'bold'
+        fontSize: 30,
+        color: '#FFF',
+        backgroundColor: 'transparent'
     }
 })
