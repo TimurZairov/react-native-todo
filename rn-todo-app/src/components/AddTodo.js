@@ -1,19 +1,17 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {View, Alert, StyleSheet, TextInput, Keyboard} from 'react-native'
 import {AppCustomButton} from "./ui/AppCustomButton";
 import {Ionicons} from "@expo/vector-icons";
+import {TodoContext} from "../context/todo/todoContext";
 
-export const AddTodo = ({setTodos, todos}) => {
+export const AddTodo = () => {
     const [title, setTitle] = useState('')
 
-    const addTodo = () => {
+    const todoContext = useContext(TodoContext)
 
-        const newTodo = {
-            id: Date.now().toString(),
-            title: title
-        }
+    const addTodo = () => {
+        todoContext.todoAdd(title)
         if(title.trim()){
-            setTodos([newTodo, ...todos])
             setTitle('')
             Keyboard.dismiss()
         }else {

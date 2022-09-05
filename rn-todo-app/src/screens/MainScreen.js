@@ -4,7 +4,7 @@ import {FlatList, Image, StyleSheet, View} from "react-native";
 import {Todo} from "../components/Todo";
 
 
-export const MainScreen = ({todos, setTodos, openTodo, removeTodo}) => {
+export const MainScreen = ({todos, openTodo, removeTodo}) => {
 
     let content = <FlatList
         keyExtractor={item => item.id}
@@ -21,7 +21,7 @@ export const MainScreen = ({todos, setTodos, openTodo, removeTodo}) => {
 
     return (
         <>
-            <AddTodo setTodos={setTodos} todos={todos}/>
+            <AddTodo todos={todos}/>
             {content}
         </>
 
