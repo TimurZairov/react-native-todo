@@ -12,11 +12,11 @@ import {AppCustomButton} from "../components/ui/AppCustomButton";
 
 
 
-export const TodoScreen = ({ todoOpen, backHandler, removeTodo, editTodo}) => {
+export const TodoScreen = ({ todoOpen, backHandler, removeTodo}) => {
     const [visible, setVisible] = useState(false)
     return (
         <>
-            <EditModal visible={visible} setVisible={setVisible} todoOpen={todoOpen} editTodo={editTodo}/>
+            <EditModal visible={visible} setVisible={setVisible} todoOpen={todoOpen}/>
             <AppCard style={styles.appCard}>
                 <View>
                     {todoOpen ? <AppRegularFont style={styles.text}>{todoOpen.title}</AppRegularFont> : {}}

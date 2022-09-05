@@ -1,17 +1,20 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import { Modal, TextInput, View, StyleSheet, Alert} from "react-native";
 import {THEME} from '../theme/theme'
 import {AppCustomButton} from "./ui/AppCustomButton";
 
 import {MaterialIcons} from "@expo/vector-icons";
+import {TodoContext} from "../context/todo/todoContext";
 
-export const EditModal = ({visible, setVisible, todoOpen, editTodo }) => {
+export const EditModal = ({visible, setVisible, todoOpen }) => {
     const [ title, setTitle ] = useState(todoOpen.title)
+    const {todoEdit} = useContext(TodoContext)
+
     const changeHandler = (id) => {
         if(title.trim().length < 3){
             Alert.alert('Ошибка', `Название задания сейчас ${title.length} символа, должно быть больше 3 символов`)
         }else {
-            editTodo(id, title)
+            todoEdit(id, title)
             setVisible(false)
         }
     }

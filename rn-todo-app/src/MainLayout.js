@@ -9,54 +9,32 @@ import {StatusBar} from "expo-status-bar";
 import {TodoContext} from "./context/todo/todoContext";
 
 export const MainLayout =() => {
-    const {todos} = useContext(TodoContext)
+    const {todos, todoRemove} = useContext(TodoContext)
     const [todoOpen, setTodoOpen] = useState(null)
-    // const [todos, setTodos] = useState([
-    //     {
-    //         id: '123',
-    //         title: 'Купить варенье'
-    //     },
-    //     {
-    //         id: '321',
-    //         title: 'Схавать варенье'
-    //     }
-    // ])
-
-    // const openTodo = (id) => {
-    //     setTodoOpen(todos.find(todo => todo.id === id))
-    // }
+    const openTodo = (id) => {
+        setTodoOpen(todos.find(todo => todo.id === id))
+    }
 
 
     const removeTodo = (id, title) => {
-        // Alert.alert(
-        //     "Удаление",
-        //     `Вы дествильено хотите удалить элемент "${title}"?`,
-        //     [
-        //         {
-        //             text: "Cancel",
-        //             style: "positive"
-        //         },
-        //         {
-        //             text: "Удалить", onPress: () => {
-        //                 setTodos(todos.filter(todo => {
-        //                     return todo.id !== id
-        //                 }))
-        //             },
-        //             style: "negative"
-        //         }
-        //     ]
-        // );
-        // setTodoOpen(null)
+        Alert.alert(
+            "Удаление",
+            `Вы дествильено хотите удалить элемент "${title}"?`,
+            [
+                {
+                    text: "Cancel",
+                    style: "positive"
+                },
+                {
+                    text: "Удалить", onPress: () => {
+                        todoRemove(id)
+                    },
+                    style: "negative"
+                }
+            ]
+        );
     }
 
-    const editTodo = (id, title) => {
-        // const todo = todos.filter(item => {
-        //     if (item.id === id) {
-        //         return item.title = title
-        //     }
-        // })
-        // return todo
-    }
 
     const backHandler = () => {
         setTodoOpen(null)
@@ -67,9 +45,8 @@ export const MainLayout =() => {
             <Navbar title='Todo App'/>
             <View style={styles.container}>
                 {!todoOpen ?
-                    <MainScreen todos={todos}  removeTodo={removeTodo}/> :
-                    <TodoScreen todoOpen={todoOpen} backHandler={backHandler} removeTodo={removeTodo}
-                                editTodo={editTodo}/>}
+                    <MainScreen todos={todos} openTodo={openTodo}  removeTodo={removeTodo}/> :
+                    <TodoScreen todoOpen={todoOpen} backHandler={backHandler} removeTodo={removeTodo}/>}
 
             </View>
             <StatusBar style="auto"/>
